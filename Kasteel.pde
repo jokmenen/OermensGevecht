@@ -1,7 +1,8 @@
 class Kasteel{
  int hp;
  int maxhp;
- int rechterpunt = 300;
+ int rechterpunt;
+ int w = 300;
  int x=0;
  int y=700;
 char roodBlauw;
@@ -12,6 +13,7 @@ char roodBlauw;
    roodBlauw = rb;
    hp = mhp;
    maxhp = mhp;
+   rechterpunt = w+x;
  }
  
  
@@ -32,7 +34,7 @@ char roodBlauw;
    fill(160);
   noStroke();
   //kasteel
-  rect(x,y,300,-300);
+  rect(x,y,w,-300);
   //toren
   rect(x+75,y,150,-500);
   

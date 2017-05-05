@@ -8,7 +8,16 @@ Soldaat[] soldaten = new Soldaat[15];
 int timerl = 0;
 
 
+/*TODO 
 
+
+Maak een resetfunctie
+Maak een eindscherm en beginscherm
+Animeer de mennekes etc.
+
+
+
+*/
 void setup(){
   
  size(1600,800);
@@ -22,7 +31,7 @@ for (Bloem b : blommekes){
 }
 soldaten[0] = new Soldaat(1300,700,'r',1);
 soldaten[1] = new Soldaat(300,700,'b',1);
- soldaten[0].display();
+// soldaten[0].display();
  thread("moveThread");
  //thread.run(soldaten);
   

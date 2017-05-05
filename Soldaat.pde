@@ -2,12 +2,15 @@ class Soldaat{
 
 int x;
 int y;
+int w;
+int l;
 int rechterpunt;
 int maxhp;
 int hp;
 int damage;
 int reach;
 char roodBlauw;
+boolean dood = false;
 int speed;
 int typeSoldaat = 1; //farmer (1), knight (2), knight on horse (3)
 
@@ -24,21 +27,21 @@ case 1 :
   damage = 10;
   maxhp = 50;
   speed =10;
-  rechterpunt = 50;
+  w = 50;
   reach = 10;
   break;
 case 2 :
   damage = 25;
    maxhp = 75;
    speed = 100;
-   rechterpunt = 50;
+   w = 50;
    reach = 10;
  break;
 case 3 :
   damage = 50;
    maxhp = 100;
    speed = 150;
-   rechterpunt = 100;
+   w = 100;
    reach = 10;
  break;
 default:
@@ -63,7 +66,13 @@ boolean checkFriendly(Kasteel s){
 }
  
 int doDamage(){return damage;}
-void getDamage(int damage){hp= hp-damage;}
+void getDamage(int damage){
+
+if (hp-damage>0){hp= hp-damage;}
+else {dood = true;}
+
+
+}
 
 
 void move(Soldaat[] soldaten, Kasteel rood, Kasteel blauw){
@@ -92,52 +101,71 @@ void move(Soldaat[] soldaten, Kasteel rood, Kasteel blauw){
   
   for (Soldaat s : soldaten){
     if (s != null){
-      println((abs(this.x-s.x)));
-      println(this.roodBlauw);
+      //println((abs(this.x-s.x)));
+      //println(this.roodBlauw);
+    
   
  //if ((this.roodBlauw == 'r'&&abs(this.x-s.rechterpunt)<reach)||(this.roodBlauw == 'b'&&abs(s.x-this.rechterpunt)<reach)) 
-    
-    if (((this.x-s.rechterpunt)<500)||(abs(s.x-this.rechterpunt)<50)){
+ 
+   if ((abs(this.x-s.rechterpunt)<10)||(abs(s.x-this.rechterpunt)<10)){
       collision = true;
-      if (checkFriendly(s)) {s.getDamage(doDamage());}
+      println(checkFriendly(s));
+      if (!checkFriendly(s)) {s.getDamage(doDamage());}
     }
-    }
-    
-}
-//check if the other castle is within 10 pixels and do damage
+  }
+ 
+ //if (this.roodBlauw == 'b'&&this.x>
+ 
+ 
+ //println((abs(this.x-blauw.rechterpunt)));
+ //println((this.roodBlauw));
+ 
+ //check if the other castle is within 10 pixels and do damage
 if (this.roodBlauw == 'r'&&abs(this.x-blauw.rechterpunt)<reach){
       collision = true;
       blauw.getDamage(doDamage());
       if (checkFriendly(blauw)) {blauw.getDamage(doDamage());}
-    } else if(this.roodBlauw == 'b'&&abs(rood.x-this.rechterpunt)<reach){
+    } else if(this.roodBlauw == 'b'&&abs(rood.x-this.rechterpunt)<reach){ //roodblauw check nodig voor collision met friendlies maar zonder damage
       collision = true;
       rood.getDamage(doDamage());
       if (checkFriendly(rood)) {rood.getDamage(doDamage());}
     }
   
-  while (timer<(timerl+(speed+800))&&collision==true){
-    timer = millis();
-    //println(timer);
-    //println((timerl+(1000-speed)));
-   delay(1); 
-   //println("while" + timerl);
-  }
+//  while (timer<(timerl+(speed+800))&&collision==true){
+//    timer = millis();
+//    //println(timer);
+//    //println((timerl+(1000-speed)));
+//   delay(1); 
+//   //println("while" + timerl);
+//  }
   
+    
+  
+    
+    
+
+
   
   if (collision==false){
     if(this.roodBlauw == 'b'){        x = x+1;}
     else if (this.roodBlauw == 'r'){  x = x-1;}
 }
-  
+}
   
 }
 
 void display(){ //moet nog een echte soldaat worden
 float healthbarsize;
+rechterpunt= x+w;
+if (this.roodBlauw == 'r'){
+//println("JAAAA"+this.x);
+}
+
+
 switch (typeSoldaat){
 case 1 :
   fill(0);
-  rect(x,y,rechterpunt,-100);
+  rect(x,y,w,-100);
   healthbarsize = (50*hp/maxhp);
   break;
 case 2 :
