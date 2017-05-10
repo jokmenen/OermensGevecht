@@ -1,16 +1,11 @@
-Bloem[] blommekes = new Bloem[15];
-Kasteel kasteelb = new Kasteel(0,700,'b',500);
-Kasteel kasteelr = new Kasteel(1300,700,'r',500);
-Soldaat[] soldaten = new Soldaat[15];
-//moveThread thread = new moveThread();
-
-
-int timerl = 0;
-
-
 /*TODO 
 
+      - boer ridder paard
+Q W E  Player 1
+I O P  Player 2
 
+
+Alles in basisformules stoppen
 Maak een resetfunctie
 Maak een eindscherm en beginscherm
 Animeer de mennekes etc.
@@ -18,65 +13,55 @@ Animeer de mennekes etc.
 
 
 */
+
+//Includes:
+import controlP5.*; 
+
+//Var declarations
+Bloem[] blommekes = new Bloem[15];
+Kasteel kasteelb = new Kasteel(0,700,'b',500);
+Kasteel kasteelr = new Kasteel(1300,700,'r',500);
+int maxSoldaten = 10;
+Soldaat[] soldaten = new Soldaat[maxSoldaten];
+boolean keysActive;
+//moveThread thread = new moveThread();
+int timerl = 0;
+ControlP5 cp5;
+StartMenu startmenu;
+
+
 void setup(){
   
- size(1600,800);
+//Moet bij setup()
+size(1600,800);
 frameRate(60);
 
- int i = 0;
-for (Bloem b : blommekes){
-    blommekes[i] = new Bloem();
-    i++;
-  
-}
-soldaten[0] = new Soldaat(1300,700,'r',1);
-soldaten[1] = new Soldaat(300,700,'b',1);
-// soldaten[0].display();
- thread("moveThread");
- //thread.run(soldaten);
-  
+setupGame();
+setupStart();
+
+  //println(this);
 }
 
 void draw(){
-  int timer = millis();
   
+
+
+
+ if (startmenu.actief){ //Als het startmenu aan staat moet het spel nog niet draaien.
+   runGame(true);
+   startmenu.display();
   
-  
-  
-  background(160,230,255);
-  noStroke();
-  fill(1,166,17);
-  rect(0,700,1600,800); 
+ } else {runGame(false);}
  
-
-
-kasteelb.display();
-kasteelr.display();
-
- for (Bloem b : blommekes){
-    b.display();
 }
 
- int i = 0;
- for (Soldaat s : soldaten){
-   if(s !=null){
-    
-    soldaten[i].display();
-    
-   }
-   i++;
+public void Startgame() {
+  startmenu.Startgame(); // verwijder knoppen en gui
+  //reset game met controls aan
+  keysActive = true;
+  println("keyactivetrue");
 }
 
-
-
-
-//debug damage display and timer
-//println("timer =", timer ,"timerl =", timerl);
-//if (timer>timerl+1000){
-//    kasteelr.damage(10);
-//    timerl=timer;
-//  }
-
-
- 
+public void Highscore() {
+  startmenu.Highscore();
 }

@@ -16,6 +16,7 @@ int typeSoldaat = 1; //farmer (1), knight (2), knight on horse (3)
 
 int s_timer;
 int s_timerl;
+int soldaatnummer;
 
 Soldaat(float xpos,float ypos, char rb,int type){
    x= xpos;
@@ -109,7 +110,7 @@ void move(Soldaat[] soldaten, Kasteel rood, Kasteel blauw){
  
    if ((abs(this.x-s.rechterpunt)<10)||(abs(s.x-this.rechterpunt)<10)){
       collision = true;
-      println(checkFriendly(s));
+     // println(checkFriendly(s));
       if (!checkFriendly(s)) {s.getDamage(doDamage());}
     }
   }
@@ -131,13 +132,13 @@ if (this.roodBlauw == 'r'&&abs(this.x-blauw.rechterpunt)<reach){
       if (checkFriendly(rood)) {rood.getDamage(doDamage());}
     }
   
-//  while (timer<(timerl+(speed+800))&&collision==true){
-//    timer = millis();
-//    //println(timer);
-//    //println((timerl+(1000-speed)));
-//   delay(1); 
-//   //println("while" + timerl);
-//  }
+  while (timer<(timerl+(speed+800))&&collision==true){
+    timer = millis();
+    //println(timer);
+    //println((timerl+(1000-speed)));
+   delay(1); 
+   //println("while" + timerl);
+  }
   
     
   
