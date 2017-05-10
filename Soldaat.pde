@@ -1,10 +1,10 @@
 class Soldaat{ 
 
-int x;
-int y;
-int w;
-int l;
-int rechterpunt;
+float x;
+float y;
+float w;
+float l;
+float rechterpunt;
 int maxhp;
 int hp;
 int damage;
@@ -17,7 +17,7 @@ int typeSoldaat = 1; //farmer (1), knight (2), knight on horse (3)
 int s_timer;
 int s_timerl;
 
-Soldaat(int xpos,int ypos, char rb,int type){
+Soldaat(float xpos,float ypos, char rb,int type){
    x= xpos;
    y= ypos;
    roodBlauw = rb;
@@ -147,8 +147,8 @@ if (this.roodBlauw == 'r'&&abs(this.x-blauw.rechterpunt)<reach){
 
   
   if (collision==false){
-    if(this.roodBlauw == 'b'){        x = x+1;}
-    else if (this.roodBlauw == 'r'){  x = x-1;}
+    if(this.roodBlauw == 'b'){        x = x+0.1;}
+    else if (this.roodBlauw == 'r'){  x = x-0.1;}
 }
 }
   
