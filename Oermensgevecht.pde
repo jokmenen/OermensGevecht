@@ -1,18 +1,21 @@
 /*TODO 
 
-      - boer ridder paard
-Q W E  Player 1
-I O P  Player 2
+  - sodlier pikeman cannon
+  Q W E  Player 1
+  I O P  Player 2
 
 
-Alles in basisformules stoppen
-Maak een resetfunctie
-Maak een eindscherm en beginscherm
-Animeer de mennekes etc.
+  friendlyreach
+  damage multipliers (armor etc)
+  extra level
+  Maak een resetfunctie
+  Maak een eindscherm en beginscherm
+  Animeer de mennekes etc.
+  
 
 
-
-*/
+  Note 10 mei: damage moet naar buiten soldaat omdat hij ander bottlenecked
+ */
 
 //Includes:
 import controlP5.*; 
@@ -28,40 +31,42 @@ boolean keysActive;
 int timerl = 0;
 ControlP5 cp5;
 StartMenu startmenu;
-
+Timer timer;
+SoldaatAdder saR;
+SoldaatAdder saB;
 
 void setup(){
-  
-//Moet bij setup()
-size(1600,800);
-frameRate(60);
 
-setupGame();
-setupStart();
+    //Moet bij setup()
+    size(1600,800);
+    frameRate(60);
+    
+    setupGame();
+    setupStart();
 
-  //println(this);
+    //println(this);
 }
 
 void draw(){
-  
 
 
 
- if (startmenu.actief){ //Als het startmenu aan staat moet het spel nog niet draaien.
-   runGame(true);
-   startmenu.display();
-  
- } else {runGame(false);}
- 
+
+    if (startmenu.actief){ //Als het startmenu aan staat moet het spel nog niet draaien.
+        runGame(true);
+        startmenu.display();
+
+    } else {runGame(false);}
+
 }
 
 public void Startgame() {
-  startmenu.Startgame(); // verwijder knoppen en gui
-  //reset game met controls aan
-  keysActive = true;
-  println("keyactivetrue");
+    startmenu.Startgame(); // verwijder knoppen en gui
+    //reset game met controls aan
+    keysActive = true;
+    //println("keyactivetrue");
 }
 
 public void Highscore() {
-  startmenu.Highscore();
+    startmenu.Highscore();
 }
